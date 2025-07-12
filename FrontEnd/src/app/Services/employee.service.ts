@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { EmployeeModel } from '../Models/employee';
-import { LoginModel } from '../Models/login';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { EmployeeModel } from "../Models/employee";
+import { LoginModel } from "../Models/login";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class EmployeeService {
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = "https://teamworksyncproject.onrender.com/";
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +28,13 @@ export class EmployeeService {
     const url = `${this.apiUrl}employees/${id}`;
     return this.http.delete<any>(url);
   }
-  updateEmployee(employeeId: string, employeeData: EmployeeModel): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}employees/${employeeId}`, employeeData);
+  updateEmployee(
+    employeeId: string,
+    employeeData: EmployeeModel
+  ): Observable<any> {
+    return this.http.put<any>(
+      `${this.apiUrl}employees/${employeeId}`,
+      employeeData
+    );
   }
 }

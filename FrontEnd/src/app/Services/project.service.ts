@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ProjectModel } from '../Models/project';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { ProjectModel } from "../Models/project";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ProjectService {
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = "https://teamworksyncproject.onrender.com/";
 
   constructor(private http: HttpClient) {}
   postProject(data: ProjectModel): any {
@@ -23,10 +23,8 @@ export class ProjectService {
   updateProject(Id: string, project: ProjectModel): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}projects/${Id}`, project);
   }
-  getProjectById(id:any):Observable<any>
-  {
+  getProjectById(id: any): Observable<any> {
     console.log(id);
     return this.http.get<any[]>(`${this.apiUrl}projects/${id}`);
   }
- 
 }

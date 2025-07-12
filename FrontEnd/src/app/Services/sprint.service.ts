@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { sprintModel } from '../Models/sprint';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { sprintModel } from "../Models/sprint";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class SprintService {
-  apiUrl = 'http://localhost:3000/';
+  apiUrl = "https://teamworksyncproject.onrender.com/";
 
   constructor(private http: HttpClient) {}
   postSprint(data: sprintModel): any {
