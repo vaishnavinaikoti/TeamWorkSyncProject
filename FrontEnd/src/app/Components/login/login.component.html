@@ -1,0 +1,38 @@
+<div class="container mt-5 ">
+  <div class="container w-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-5">
+        <form style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" class="border p-5  rounded-2" [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+          <h3 class="text-center">
+            Project Management System Login
+          </h3>
+          <p class="text-center my-3">
+            Please login with credentials below
+          </p>
+          <div class="form-outline mb-4">
+            <input type="email" id="form2Example1" class="form-control" formControlName="Email" />
+            <label class="form-label" for="form2Example1">Email address</label>
+          </div>
+          <div class="form-outline mb-2">
+            <input type="password" id="form2Example2" class="form-control" formControlName="Password" />
+            <label class="form-label" for="form2Example2">Password</label>
+          </div>
+          <div class="row mb-4">
+            <div class="col d-flex justify-content-center">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="form2Example31" />
+                <label class="form-check-label" for="form2Example31"> Remember me </label>
+              </div>
+            </div>
+            <div class="col">
+              <a routerLink='/team/add'>Register as Employee</a>
+            </div>
+          </div>
+          <div class="row ">
+            <button type="submit" class="btn btn-primary btn-block mb-4 ">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

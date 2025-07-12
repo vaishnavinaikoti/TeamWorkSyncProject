@@ -1,0 +1,55 @@
+<div class="row pt-5 " style="display: flex; justify-content: center;">
+    <div class="col-6 border p-3 px-5 border-5">
+        <div class="container p-3"> 
+            <h4 class="text-center">
+                EDIT PROJECT
+            </h4>
+        </div>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+            <div class="container">
+                <div class="mb-3">
+                    <label for="projectName" class="form-label">Project Name</label>
+                    <input type="text" class="form-control" id="projectName" formControlName="projectName"
+                        placeholder="Project Name">
+                </div>
+                <div class="mb-3">
+                    <label for="projectDescription" class="form-label">Project Description</label>
+                    <textarea class="form-control" id="projectDescription" rows="3"
+                        formControlName="projectDescription"></textarea>
+                </div>
+                <div class="row my-2">
+                    <div class="col-6">
+                        <label for="storypoints" class="form-label">Total Story points</label>
+                        <input type="number" class="form-control" id="storypoints" formControlName="storypoints"
+                            placeholder="Project Name">
+                    </div>
+                    <div class="col-6">
+                        <label for="status" class="form-label">Project Status</label>
+                        <select class="form-select" aria-label="Default select example" formControlName="status">
+                            <option selected disabled>select project status</option>
+                            <option value="ACTIVE">ACTIVE</option>
+                            <option value="PROGRESS">PROGRESS</option>
+                            <option value="HOLD">HOLD</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-6">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" formControlName="startDate"
+                            placeholder="Project Name">
+                    </div>
+                    <div class="col-6">
+                        <label for="endDate" class="form-label">End Date</label>
+                        <input type="date" class="form-control" id="endDate" formControlName="endDate"
+                            placeholder="Project Name">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 text-center">
+                <button type="submit" class="btn btn-primary">Update Project</button>
+            </div>
+        </form>
+    </div>
+</div>

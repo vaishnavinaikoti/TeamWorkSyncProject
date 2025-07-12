@@ -1,0 +1,96 @@
+<h4 class="my-3">
+    {{"List of Sprints In Project" | uppercase}}
+</h4>
+<div class="row">
+    <div class="col-3" *ngIf="isAdmin">
+        <div class="card my-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Create Sprints/Iteration</h5>
+                <p class="card-text">
+                    Sprint is a fixed-length development cycle. you can choose Number of weeks to a specific sprint.
+                </p>
+                <button type="button" (click)="createSprint()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Sprint
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3" *ngFor="let sprint of this.SprintsInProjects, let count = index">
+        <div class="card my-3" [ngStyle]="{'border': sprint.Active ? '3px double cadetblue' : 'black'}" style="height: 18rem;  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;">
+            <div class="card-body">
+                <small *ngIf="sprint.Active">Current sprint: </small>
+                <small>{{sprint.sprint_name}}</small>
+                <div style="width: 100%;  display: flex;justify-content: center;">
+                    <div class="sprint-logo mt-3"
+                        style="height: 120px; width: 120px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; border-radius: 50%; display: flex; align-items: center;  justify-content: center;">
+                        <h1>
+                            S-{{count}}
+                        </h1>
+                    </div>
+                </div>
+                <div class="my-2 p-0">
+                    <div class="row" style="color:cadetblue;">
+                        <div class="" style="font-size: small; font-weight: bold;padding: 0px 5px;" >
+                            Sprint period
+                        </div>
+                        <div style="padding: 0px 5px;">
+                            <small  style="font-size: small; font-weight: bold;">
+                                {{sprint.start_date | date: 'dd-MM-yyyy'}} TO {{sprint.end_date | date: 'dd-MM-yyyy'}}
+                            </small>
+                        </div>
+                    </div>
+                    <small class="">
+                    </small>
+                </div>
+                <button type="button" (click)="redirectToAssignBacklogs(sprint)" class="btn btn-primary">
+                    Sprint Details
+                </button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="SprintForm" (ngSubmit)="onSprintFormSubmit()">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Sprints</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <h5>Add New Sprint</h5>
+                        <div class="row my-2 ">
+                            <div class="col">
+                                <label for="sprintid" class="form-label">Sprint Id</label>
+                                <input type="text" class="form-control" readonly id="sprintid"
+                                    formControlName="SprintName">
+                            </div>
+                            <div class="col">
+                                <label for="sprintid" class="form-label">Duration in weeks</label>
+                                <input type="number" class="form-control" id="sprintid" 
+                                    (input)="setSprintEndDate($event.target)">
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-6">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" readonly id="startDate"
+                                    formControlName="startDate">
+                            </div>
+                            <div class="col-6">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="endDate" readonly formControlName="endDate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

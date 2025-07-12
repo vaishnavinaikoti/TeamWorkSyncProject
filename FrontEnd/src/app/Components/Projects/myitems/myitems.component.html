@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <h4 style="color: cadetblue;" class="col-10 text-uppercase mb-4">
+            My Work Items
+        </h4>
+        <div (click)="redirectToProjectDetails()" class="col-2"
+            style="text-align: right; cursor: pointer; text-decoration: underline;">
+            Back to Project details
+        </div>
+    </div>
+    <div class="list-group">
+        <div style="cursor: pointer;" class="list-group-item " *ngFor="let item of this.AllWorkItemsInThisSprint"
+            aria-current="true">
+            <div class="w-100">
+                <div class="row">
+                    <div class="col-10">
+                        <h5 class="mb-1">{{item.backlogId}} | {{item.backlogTitle}}</h5>
+                    </div>
+                    <div class="col">
+                        <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            (click)="UpdateWorkItemStatus(item)">
+                            UPDATE STATUS
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mb-1">{{item.backlogDescription}}</p>
+            <small>
+                <b>
+                    Priority:
+                    <span style="color: cadetblue;">{{item.priority}}</span>
+                    | Status:
+                    <span style="color: cadetblue;">{{item.status}}</span>
+                </b>
+            </small>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="WorkItemForm" (ngSubmit)="onWorkItemFormSubmit()">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update WorkItem Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container" *ngIf="this.SelectedWorkItem!=null">
+                        <small>
+                            Work Item Id: {{this.SelectedWorkItem.backlogId}}
+                        </small>
+                        <h5> Title: {{this.SelectedWorkItem.backlogTitle}}</h5>
+                        <small>
+                            Description: {{this.SelectedWorkItem.backlogDescription}}
+                        </small>
+                        <div class="row my-2 ">
+                            <div class="col">
+                                <label for="Priority" class="form-label">Status</label>
+                                <select class="form-control" id="status" formControlName="status">
+                                    <option *ngFor="let status of this.statuslist" [value]="status">{{
+                                        status | uppercase }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

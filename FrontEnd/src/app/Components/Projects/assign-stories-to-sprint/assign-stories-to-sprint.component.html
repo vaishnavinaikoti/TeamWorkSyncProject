@@ -1,0 +1,135 @@
+<div class="row" *ngIf="isAdmin">
+    <div class="col">
+        <h3>Sprint Wise Stories
+            <span style="color:cadetblue;">
+                {{this.CurrentSprint.sprint_name}}
+            </span>
+        </h3>
+        <div class="d-flex justify-content-between pe-5 my-1">
+            <h5>Added Sprint list</h5>
+            <div *ngIf="this.AddingSprintList.length !=0" class="btn btn-primary" (click)="SubmitAddedBacklogList()">
+                Submit Added Sprint List
+            </div>
+        </div>
+        <div class="list-group " style="height: 40vh; overflow-y: scroll;">
+            <div *ngIf="this.AddingSprintList.length ==0">
+                <div style="
+                background-color: #cbcbcb;
+                    height: 15rem;" class="d-flex justify-content-center align-items-center">
+                    No Data Added
+                </div>
+            </div>
+            <li class="list-group-item d-flex w-100 justify-content-between"
+                *ngFor="let addedSprint of this.AddingSprintList">
+                <div>
+                    <span>
+                        {{addedSprint.backlogId}} |
+                        {{addedSprint.backlogTitle}}
+                    </span>
+                </div>
+                <small>
+                    {{addedSprint.priority}}
+                    <b>
+                        {{addedSprint.status}}
+                    </b>
+                </small>
+            </li>
+        </div>
+        <h3>Stories in {{this.CurrentSprint.sprint_name}}</h3>
+        <div class="list-group" style="height: 40vh; overflow-y: scroll;">
+            <div *ngIf="this.CurrentSprintStoriesList.length ==0">
+                <div style="
+                background-color: #cbcbcb;
+                    height: 15rem;" class="d-flex justify-content-center align-items-center">
+                    No backlogs Available in Current Sprint
+                </div>
+            </div>
+            <li class="list-group-item  w-100" *ngFor="let sprint of this.CurrentSprintStoriesList">
+                <div class="row">
+                    <div class="col-10">
+                        <span>
+                            {{sprint.backlogId}} |
+                            {{sprint.backlogTitle}}
+                        </span>
+                    </div>
+                    <div class="col-2 text-right">
+                        <small>
+                            {{sprint.priority}}
+                            <b>
+                                {{sprint.status}}
+                            </b>
+                        </small>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </div>
+    <div class="col" style="border-left: 1px solid #a8a8a8;" style="height:90vh; overflow-y: scroll;">
+        <h5>
+            Add Available User Stories to Sprint
+        </h5>
+        <div *ngIf="this.AvailableStories.length ==0">
+            <div style="
+            background-color: #cbcbcb;
+                height: 80vh;" class="d-flex justify-content-center align-items-center text-uppercase flex-column ">
+                <div style=" font-weight: bold;">
+                    No backlogs Available For the Project
+                </div>
+                <div style=" font-weight: bold; color:cadetblue ; text-decoration: underline; cursor: pointer;"
+                    (click)="redirectToBacklogs()">
+                    redirect to backlogs
+                </div>
+            </div>
+        </div>
+        <div class="list-group">
+            <div class="list-group-item " aria-current="true" *ngFor="let backlog of this.AvailableStories" [ngClass]="backlog.priority == 'Important' ? 'list-group-item-danger' :
+                 backlog.priority == 'High Priority' ? 'list-group-item-secondary' :
+                 backlog.priority == 'Low Priority' ? 'list-group-item-info' :  
+                 backlog.priority == 'Moderate Priority' ? 'list-group-item-warning' :  
+                 ''">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"> {{backlog.backlogId}} {{backlog.backlogTitle}}</h5>
+                    <div>
+                        <small class="badge bg-warning rounded-pill">
+                            {{backlog.status}}
+                        </small>
+                        <button class=" ms-1 btn btn-primary badge bg-primary rounded-pill"
+                            (click)="AddToList(backlog)">ADD</button>
+                    </div>
+                </div>
+                <p class="mb-1">{{backlog.backlogDescription}}</p>
+                <small style="font-weight: bolder;">{{backlog.priority}}</small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mx-3" *ngIf="!isAdmin">
+    <h3>Stories in {{this.CurrentSprint.sprint_name}}</h3>
+    <div class="list-group" style="height: 80vh; ">
+        <div *ngIf="this.CurrentSprintStoriesList.length ==0">
+            <div style="
+                background-color: #cbcbcb;
+                    height: 15rem;" class="d-flex justify-content-center align-items-center">
+                No backlogs Available in Current Sprint
+            </div>
+        </div>
+        <li class="list-group-item w-100 " *ngFor="let sprint of this.CurrentSprintStoriesList">
+            <div class="row">
+                <div class="col-10">
+                    <span>
+                        {{sprint.backlogId}} |
+                        {{sprint.backlogTitle}}
+                    </span>
+                </div>
+                <div class="col-2 text-right">
+                    <small>
+                        {{sprint.priority}}
+                        <b>
+                            {{sprint.status}}
+                        </b>
+                    </small>
+                </div>
+            </div>
+        </li>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container p-5">
+    <div class="row text-center mb-2">
+        <h3>LIST OF PROJECTS</h3>
+    </div>
+    <div *ngIf="this.isAdmin" class="row">
+        <div class=" col card  " (click)="this.redirectService.RedirectTo('projects/AddProject')"
+            style=" display: flex; justify-content: center; align-items: center;cursor: pointer; border: 5px double #d2ddfb; border-radius: 10px;">
+            <div style=" padding: 10px;text-align: center; ">
+                <i class="bi bi-plus-square-fill" style="font-size: 50px; color: #edf1fc;"></i>
+                <h4 style="color: #4e73e5;">
+                    ADD PROJECT
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" *ngFor="let project of projects">
+            <app-project-card [isAdmin]="this.isAdmin" [projectDetailes]="project"></app-project-card>
+        </div>
+    </div>
+</div>

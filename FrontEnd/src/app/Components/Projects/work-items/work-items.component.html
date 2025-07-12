@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <h4 style="color: cadetblue;" class="col-10 text-uppercase mb-4">
+            All Assigned Work Items 
+        </h4>
+        <div (click)="redirectToProjectDetails()" class="col-2" style="text-align: right; cursor: pointer; text-decoration: underline;">
+          Back to Project details
+        </div>
+      </div>
+    <div class="list-group">
+        <div style="cursor: pointer;" class="list-group-item list-group-item-action"
+            *ngFor="let item of this.AllWorkItemsInThisSprint"
+        aria-current="true">
+            <div class="w-100">
+                <div class="row">
+                    <div class="col-10">
+                        <h5 class="mb-1">{{item.backlogId}} | {{item.backlogTitle}}</h5>
+                    </div>
+                    <div class="col-2">
+                        <small>
+                            <b>
+                                Assigned To: 
+                                <span style="color: blueviolet; text-decoration: underline;">
+                                    {{item.employee_id.first_name}} {{item.employee_id.last_name}}
+                                </span>
+                            </b>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <p class="mb-1">{{item.backlogDescription}}</p>
+            <small >
+                <b>
+                    Priority: 
+                    <span style="color: cadetblue;">{{item.priority}}</span>
+                     |   Status:
+                    <span style="color: cadetblue;">{{item.status}}</span>
+                </b>
+            </small>
+        </div>
+    </div>
+</div>

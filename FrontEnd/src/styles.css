@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --mydark: #28104E;
+    --myprimary: #9754CB;
+    --mysecondary: #DEACF5;
+    --dark2:#6237A0;
+    --mylight: #fbeceb;
+  }
+  
+  a,button {
+    color: var(--mydark) !important;
+  }
+  .bg-myprimary {
+    background-color: var(--myprimary) !important;
+  }
+  .bg-mysecondary {
+    background-color: var(--mysecondary) !important;
+  }
+  .bg-mylight {
+    background-color: var(--mylight) !important;
+  }
+  .bg-mydark {
+    background-color: var(--mydark) !important;
+  }
+  .fc-myprimary {
+    color: var(--myprimary) !important;
+  }
+  .fc-mysecondary {
+    color: var(--mysecondary) !important;
+  }
+  .fc-mylight {
+    color: var(--mylight) !important;
+  }
+  .fc-mydark {
+    color: var(--mydark) !important;
+  }
+  .btn-primary {
+    background-color: var(--mysecondary) !important;
+  }
+  .card-link{
+    color: var(--myprimary) !important;
+  }

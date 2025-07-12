@@ -1,0 +1,25 @@
+<div class="card mx-2 my-5" style="width: 20rem;">
+    <img class="card-img-top" src={{RandomImage()}} alt="Card image cap" style="height: 10rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{projectDetailes.project_name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{projectDetailes.project_status}} PROJECT</h6>
+        <p class="card-text">{{projectDetailes.project_description| slice:0:100}}</p>
+        <!-- <p class="card-text">
+            Completed Story Points
+            {{projectDetailes.completed_story_points}} of {{projectDetailes.total_story_points}}
+        </p> -->
+        <button (click)="SelectProject(projectDetailes)" class="btn btn-primary" >Project Details</button>
+    </div>
+    <div *ngIf="isAdmin" class="widget-49-meeting-action">
+        <span>
+            <div class="btn" (click)="Delete(projectDetailes)">
+                <i class="bi bi-trash fs-4 text-danger"></i>
+            </div>
+        </span>
+        <span>
+            <div class="btn" (click)="Edit(projectDetailes)">
+                <i class="bi bi-pencil-square fs-4"></i>
+            </div>
+        </span>
+    </div>
+</div>

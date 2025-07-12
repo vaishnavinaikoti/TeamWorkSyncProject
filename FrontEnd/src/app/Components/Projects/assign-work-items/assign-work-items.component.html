@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-4">
+        <h4>
+            List of User Stories in Project
+        </h4>
+        <div class="container" style="height: 90vh; overflow-y:  scroll;">
+            <div *ngIf="this.AllUnAssignesWorkItemsInThisSprint.length ==0">
+                <div style="
+                background-color: #cbcbcb;
+                    height: 15rem;" class="d-flex flex-column justify-content-center align-items-center">
+                    No Unassigned Backlogs Available in Current Sprint
+                    <div (click)="redirectToSprint()" style="color: cadetblue; text-decoration: underline; cursor: pointer; font-weight: bold;"> 
+                        Add Backlogs to Current Sprint
+                    </div>
+
+                </div>
+            </div>
+            <div class="list-group">
+                <div (click)="ToggleStory(story)" class="btn list-group-item list-group-item-action" aria-current="true"
+                    *ngFor="let story of this.AllUnAssignesWorkItemsInThisSprint">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{story.backlogId}} {{story.backlogTitle}}</h5>
+                        <small>{{story.status}}</small>
+                    </div>
+                    <p class="mb-1">
+                        {{story.backlogDescription}}
+                    </p>
+                    <small>{{story.priority}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8 pt-5">
+        <div class="card " *ngIf="this.SelectedStory != null">
+            <div class="card-header text-center">
+                Assign User Story To Team Member/Developer
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{this.SelectedStory.backlogId}} {{this.SelectedStory.backlogTitle}}</h5>
+                <p class="card-text">{{this.SelectedStory.backlogDescription}}</p>
+            </div>
+            <form [formGroup]="AssignWorkItemForm" (ngSubmit)="onAssignWorkItemFormSubmit()">
+                <div class="row mx-3 my-2">
+                    <h5>Assign User Story To:</h5>
+                    <div class="col">
+                        <label for="teammember">Select Team Member:</label>
+                        <select class="form-control" id="teammember" formControlName="employeeId">
+                            <option value="">Select Employee</option>
+                            <option *ngFor="let item of this.EmployeesInProject" [value]="item._id">
+                                {{item.first_name }} {{item.last_name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="status">Select Story Status:</label>
+                        <select class="form-control" id="status" formControlName="status">
+                            <option value="">Select Status</option>
+                            <option *ngFor="let item of this.UserStoryStatus" [value]="item">
+                                {{item}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mx-3 my-3">
+                    <div class="col">
+                        <button class="btn btn-primary" type="submit">
+                            Save Work Assignment
+                        </button>
+                    </div>
+                    <div class="col">
+
+                    </div>
+                </div>
+            </form>
+            <div class="card-footer text-muted">
+                {{this.SelectedStory.priority}}
+            </div>
+        </div>
+        <div class="card text-center" *ngIf="this.SelectedStory == null">
+            <div class="card-header">
+                Assign User Story To Team Member/Developer
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Please Select Work Item From List
+                </h5>
+                <p class="card-text">To Assign the user story to the team member, select item form list.</p>
+
+            </div>
+            <div class="card-footer text-muted">
+                <p>No Story Selected</p>
+            </div>
+        </div>
+    </div>
+</div>

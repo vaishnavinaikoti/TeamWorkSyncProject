@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <h3 class="text-center mb-3 d-flex justify-content-around">
+        List of Employees
+        <a routerLink='/team/add' *ngIf="isAdmin">
+            <div class="btn btn-outline-primary">
+                Add Employee
+            </div>
+        </a>
+    </h3>
+    <div class="row d-flex justify-content-center mb-5">
+        <div class="col-8">
+            <ol class="list-group list-group-numbered">
+                <li *ngFor="let employee of EmployeesList"
+                    class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">
+                            {{employee.first_name}} {{employee.last_name}}
+                        </div>
+                        <div style="display: flex; min-width: 500px; justify-content: space-between;">
+                            <div>
+                                ROLE : {{employee.role}}
+                            </div>
+                        </div>
+                        <div style="display: flex; ">
+                            <div>
+                                Email :
+                                <a href="mailto:{{employee.email}}">
+                                    {{employee.email}}
+                                </a>
+                            </div>
+                            <div>&nbsp;&nbsp;| &nbsp;&nbsp;</div>
+                            <div>
+                                Phone Number : {{employee.phone_number}}
+                            </div>
+                        </div>
+                    </div>
+                    <span>
+                        <div class="badge bg-primary rounded-pill mt-3">
+                            {{employee.working_status}}
+                        </div>
+                    </span>
+                    <div *ngIf="isAdmin">
+                        <span>
+                            <div class="btn" (click)="Delete(employee)">
+                                <i class="bi bi-trash fs-4 text-danger"></i>
+                            </div>
+                        </span>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
